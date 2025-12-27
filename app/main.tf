@@ -42,8 +42,10 @@ module "myvpc" {
   public_subnets = [
     { cidr = "172.31.1.0/24", az = "eu-east-1a" },
   ]
+   private_subnets = [
+    { cidr = "172.31.101.0/24", az = "eu-west-1a" },
+  ]
 }
-
 
 module "allow_http_https_ssh" {
   source        = "../modules/sg-module"
