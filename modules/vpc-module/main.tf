@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "mygw" {
 resource "aws_subnet" "public" {
   for_each = { for i, s in var.public_subnets : i => s }
 
-  vpc_id                  = aws_vpc.vpc.id
+  vpc_id                  = aws_vpc.myvpc.id
   cidr_block              = each.value.cidr
   availability_zone       = each.value.az
   map_public_ip_on_launch = true

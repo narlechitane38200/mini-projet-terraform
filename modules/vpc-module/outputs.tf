@@ -11,5 +11,5 @@ output "public_subnet_ids" {
 
 output "igw_id" {
   description = "ID de l'Internet Gateway"
-  value       = aws_internet_gateway.this.id
+  value       = aws_internet_gateway.mygw.id
 }
