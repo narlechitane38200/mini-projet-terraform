@@ -37,6 +37,6 @@ resource "aws_instance" "myec2" {
     }
 
     provisioner "local-exec" {
-       command = "echo ${self.public_ip} >> ip_ec2.txt"
+       command = "echo ${aws_eip.ec2_eip.public_ip} >> ip_ec2.txt"
     }
 }
