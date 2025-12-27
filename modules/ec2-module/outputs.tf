@@ -9,5 +9,5 @@ output "availability_zone" {
 }
 
 output "public_ip" {
-  value = aws_instance.myec2.public_ip
+  value = aws_eip.ec2_eip.public_ip
 }
