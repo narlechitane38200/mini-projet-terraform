@@ -1,0 +1,11 @@
+# Terraform
+app/.terraform/
+*.tfstate
+*.tfstate.*
+.crash.log
+
+# Terraform variables (si sensibles)
+*.tfvars
+
+#Secrets
+.secrets/*
