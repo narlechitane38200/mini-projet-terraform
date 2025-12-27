@@ -33,6 +33,17 @@ module "myec2" {
   key_name = "MyKey_GIT"
 }
 
+module "myvpc" {
+  source = "../modules/vpc-module"
+
+  vpc_name = "radouane-vpc"
+  vpc_cidr = "172.31.0.0/16"
+
+  public_subnets = [
+    { cidr = "172.31.1.0/24", az = "eu-east-1a" },
+  ]
+}
+
 
 module "allow_http_https_ssh" {
   source        = "../modules/sg-module"
