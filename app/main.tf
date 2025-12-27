@@ -70,3 +70,7 @@ resource "aws_volume_attachment" "ebs_att" {
   volume_id   = module.myebs.ebs_volume_id
   instance_id = module.myec2.instance_id
 }
+
+provisioner "local-exec" {
+       command = "echo ${module.public_ip.eip_allocation_id} >> ip_ec2.txt"
+    }

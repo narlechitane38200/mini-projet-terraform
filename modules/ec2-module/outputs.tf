@@ -7,7 +7,3 @@ output "availability_zone" {
   description = "EC2 availability zone"
   value       = aws_instance.myec2.availability_zone
 }
-
-output "public_ip" {
-  value = aws_eip.ec2_eip.public_ip
-}
