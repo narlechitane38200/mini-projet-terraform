@@ -15,3 +15,9 @@ variable "vpc_security_group_ids" {
   description = "Liste des Security Group IDs pour l'instance EC2"
   default     = []
 }
+
+variable "vpc_name" {
+  description = "Nom du VPC"
+  type        = string
+  defaut = "radouane-myvpc"
+}

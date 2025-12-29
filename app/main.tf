@@ -27,8 +27,7 @@ module "myec2" {
 
 module "myvpc" {
   source = "../modules/vpc-module"
-
-  vpc_name = "radouane-vpc"
+  vpc_name = var.vpc_name
   vpc_cidr = "172.31.0.0/16"
 
   public_subnets = [
@@ -65,6 +64,6 @@ resource "aws_volume_attachment" "ebs_att" {
 
 resource "null_resource" "write_ec2_ip" {
   provisioner "local-exec" {
-    command = "echo ${module.public_ip.eip_allocation_id} >> ip_ec2.txt"
+    command = "echo ${module.public_ip.eip_allocation_id} > ip_ec2.txt"
   }
 }
