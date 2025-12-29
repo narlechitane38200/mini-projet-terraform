@@ -19,5 +19,5 @@ variable "vpc_security_group_ids" {
 variable "vpc_name" {
   description = "Nom du VPC"
   type        = string
-  defaut = "radouane-myvpc"
+  default = "radouane-myvpc"
 }
