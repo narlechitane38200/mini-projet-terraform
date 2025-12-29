@@ -32,10 +32,10 @@ module "myvpc" {
   vpc_cidr = "172.31.0.0/16"
 
   public_subnets = [
-    { cidr = "172.31.1.0/16", az = "us-east-1a" },
+    { cidr = "172.31.1.0/24", az = "us-east-1a" },
   ]
    private_subnets = [
-    { cidr = "172.31.101.0/16", az = "us-east-1a" },
+    { cidr = "172.31.101.0/24", az = "us-east-1a" },
   ]
 }
 
