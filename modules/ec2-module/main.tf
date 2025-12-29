@@ -19,23 +19,5 @@ resource "aws_instance" "myec2" {
     tags = var.aws_common_tags
     vpc_security_group_ids = var.vpc_security_group_ids 
     subnet_id = var.subnet_id
-    key_name = var.key_name
-
-  provisioner "remote-exec" {
-      inline = [
-        "sudo apt update -y",
-        "sudo apt install -y nginx",
-        "sudo systemctl start nginx",
-        "sudo systemctl enable nginx"
-       ]
-
-       connection {
-         type = "ssh"
-         user = "ubuntu"
-         private_key = file("../.secrets/MyKey_GIT.pem")
-         host = module.public_ip.ec2_public_ip         
-       }     
-    }
-
-  depends_on = [aws_eip_association.eip_assoc]  
+    key_name = var.key_name 
 }

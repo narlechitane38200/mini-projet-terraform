@@ -69,4 +69,23 @@ resource "null_resource" "write_ec2_ip" {
   provisioner "local-exec" {
     command = "echo ${module.public_ip.ec2_public_ip} > ip_ec2.txt"
   }
+}  
+
+resource "null_resource" "install_nginx" {
+  depends_on = [aws_eip_association.eip_assoc] 
+  provisioner "remote-exec" {
+      inline = [
+        "sudo apt update -y",
+        "sudo apt install -y nginx",
+        "sudo systemctl start nginx",
+        "sudo systemctl enable nginx"
+       ]
+
+       connection {
+         type = "ssh"
+         user = "ubuntu"
+         private_key = file("../.secrets/MyKey_GIT.pem")
+         host = module.public_ip.ec2_public_ip         
+       }     
+    }
 }
