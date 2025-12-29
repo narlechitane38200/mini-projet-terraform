@@ -1,6 +1,7 @@
 resource "aws_security_group" "allow_http_https_ssh" {
   name = "radouane-sg"
   description = "Allows http, https and ssh inbound trafic"
+  vpc_id = var.vpc_id
 
   ingress {
     description = "TLS from VPC"
