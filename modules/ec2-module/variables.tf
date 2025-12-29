@@ -20,3 +20,8 @@ variable "key_name" {
   type        = string
   description = "Nom de la key pair AWS"
 }
+
+variable "subnet_id" {
+  description = "Subnet où placer l'EC2"
+  type        = string
+}

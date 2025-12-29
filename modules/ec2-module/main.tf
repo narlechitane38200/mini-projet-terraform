@@ -18,6 +18,7 @@ resource "aws_instance" "myec2" {
     associate_public_ip_address = false
     tags = var.aws_common_tags
     vpc_security_group_ids = var.vpc_security_group_ids 
+    subnet_id = var.subnet_id
     key_name = var.key_name
 
   provisioner "remote-exec" {

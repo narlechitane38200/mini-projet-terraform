@@ -23,6 +23,7 @@ module "myec2" {
   aws_common_tags = var.aws_common_tags 
   vpc_security_group_ids = [module.allow_http_https_ssh.security_group_id]
   key_name = "MyKey_GIT"
+  subnet_id = module.myvpc.public_subnet_ids[0]
 }
 
 module "myvpc" {
@@ -34,12 +35,13 @@ module "myvpc" {
     { cidr = "172.31.1.0/24", az = "us-east-1a" },
   ]
    private_subnets = [
-    { cidr = "172.31.101.0/24", az = "us-west-1a" },
+    { cidr = "172.31.101.0/24", az = "us-east-1a" },
   ]
 }
 
 module "allow_http_https_ssh" {
   source        = "../modules/sg-module"
+  vpc_id = module.myvpc.vpc_id
 }
 
 module "public_ip" {
@@ -63,6 +65,7 @@ resource "aws_volume_attachment" "ebs_att" {
 }
 
 resource "null_resource" "write_ec2_ip" {
+  depends_on = [aws_eip_association.eip_assoc]
   provisioner "local-exec" {
     command = "echo ${module.public_ip.ec2_public_ip} > ip_ec2.txt"
   }
