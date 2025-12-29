@@ -33,7 +33,9 @@ resource "aws_instance" "myec2" {
          type = "ssh"
          user = "ubuntu"
          private_key = file("../.secrets/MyKey_GIT.pem")
-         host = self.public_ip
+         host = module.public_ip.ec2_public_ip         
        }     
     }
+
+  depends_on = [aws_eip_association.eip_assoc]  
 }
