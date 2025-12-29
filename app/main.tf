@@ -64,6 +64,6 @@ resource "aws_volume_attachment" "ebs_att" {
 
 resource "null_resource" "write_ec2_ip" {
   provisioner "local-exec" {
-    command = "echo ${module.public_ip.eip_allocation_id} > ip_ec2.txt"
+    command = "echo ${module.public_ip.ec2_public_ip} > ip_ec2.txt"
   }
 }
