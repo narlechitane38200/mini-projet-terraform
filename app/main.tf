@@ -29,18 +29,18 @@ module "myec2" {
 module "myvpc" {
   source = "../modules/vpc-module"
   vpc_name = var.vpc_name
-  vpc_cidr = "172.31.0.0/16"
+  vpc_cidr = "10.10.0.0/16"
 
   public_subnets = [
-    { cidr = "172.31.1.0/24", az = "us-east-1a" },
+    { cidr = "10.10.1.0/24", az = "us-east-1a" },
   ]
    private_subnets = [
-    { cidr = "172.31.101.0/24", az = "us-east-1a" },
+    { cidr = "10.10.101.0/24", az = "us-east-1a" },
   ]
 }
 
 module "allow_http_https_ssh" {
-  source        = "../modules/sg-module"
+  source = "../modules/sg-module"
   vpc_id = module.myvpc.vpc_id
 }
 
